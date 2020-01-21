@@ -676,11 +676,9 @@
     $.ajax({
       type: "GET",
       url: 'http://icsl.ee.columbia.edu:8010/testEarnings',
-      data: "id=" + "pw2428", // appears as $_GET['id'] @ your backend side
+      data: "id=" + "pw2428",
       success: function(data) {
-            // data is ur summary
-        alert( "Data Loaded: " + data );
-        document.getElementById("Earnings").innerHTML = "New text!";
+        document.getElementById("Earnings").innerHTML = data;
       }
     });
   </script>
