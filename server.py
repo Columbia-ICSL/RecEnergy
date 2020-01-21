@@ -16,6 +16,8 @@ class Debug:
 
 class Earnings:
 	def GET(self):
+		web.header('Access-Control-Allow-Origin', '*')
+		web.header('Access-Control-Allow-Credentials', 'true')
 		return "$15,315"
 
 class MyApplication(web.application):
