@@ -356,18 +356,7 @@
                 </div>
               </div>
             </div>
-            <script>
-            $.ajax({
-              type: "GET",
-              url: 'http://icsl.ee.columbia.edu:8010/testEarnings',
-              data: "id=" + "pw2428", // appears as $_GET['id'] @ your backend side
-              success: function(data) {
-                    // data is ur summary
-                document.getElementById("Earnings").innerHTML = "New text!";
-              }
-            });
-            // document.getElementById("Earnings").innerHTML = "New text!";
-            </script>
+  
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
@@ -683,6 +672,18 @@
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
 
+  <script>
+    $.ajax({
+      type: "GET",
+      url: 'http://icsl.ee.columbia.edu:8010/testEarnings',
+      data: "id=" + "pw2428", // appears as $_GET['id'] @ your backend side
+      success: function(data) {
+            // data is ur summary
+        alert( "Data Loaded: " + data );
+        document.getElementById("Earnings").innerHTML = "New text!";
+      }
+    });
+  </script>
 </body>
 
 </html>
