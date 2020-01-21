@@ -7,11 +7,16 @@ import DBMgr
 
 db = DBMgr.DBMgr()
 
-urls = ("/debug", "Debug")
+urls = ("/debug", "Debug",
+		"/testEarnings", "Earnings")
 
 class Debug:
     def GET(self):
         return DBMgr.dump_debug_log()
+
+class Earnings:
+	def GET(self):
+		return "$15,315"
 
 class MyApplication(web.application):
 	def run(self, port=8070, *middleware):

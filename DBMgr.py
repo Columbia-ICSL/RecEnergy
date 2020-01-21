@@ -8,3 +8,7 @@ def dump_debug_log():
 	return pprint.pformat(
 		list(pymongo.MongoClient().log_db.log.find()),
 	indent=2)
+
+class DBMgr(object):
+	def __init__(self):
+		return
