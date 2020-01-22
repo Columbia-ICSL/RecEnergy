@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Dashboard</title>
+  <title>RecEnergy Dashboard</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -675,7 +675,7 @@
   <script>
     $.ajax({
       type: "GET",
-      url: 'http://icsl.ee.columbia.edu:8010/testEarnings',
+      url: 'http://icsl.ee.columbia.edu:8000/testEarnings',
       data: "id=" + "pw2428",
       success: function(data) {
         document.getElementById("Earnings").innerHTML = data;
