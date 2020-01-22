@@ -152,6 +152,12 @@ class DBMgr(object):
 		self.watchdogLastSeen_User={}
 		self.watchdogLastSeen_Appliance={}
 
+	def SaveParameters(self, parameters):
+		self.snapshots_parameters.insert({
+			"timestamp":datetime.datetime.utcnow(),
+			"data":parameters
+			})
+
 	def ReportEnergyValue(self, applianceID, value, raw_data=None):
 		"maintenance tree node's energy consumption item, and update a sum value"
 		known_room=None
@@ -181,3 +187,6 @@ class DBMgr(object):
 
 	def updateApplianceValue(self, applianceID, value):
 		self.list_of_appliances[applianceID]["value"]=int(float(value))
+
+	def constructParameterVector(self):
+		return

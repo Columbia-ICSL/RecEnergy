@@ -7,15 +7,16 @@ import datetime
 import time
 import calendar
 import DBMgr
-import api.bacnet as bacnet
-import api.plugmeter as plugmeter
-
+import api.energySensing.bacnet as bacnet
+import api.energySensing.plugmeter as plugmeter
+import api.websiteAPI as websiteAPI
 db = DBMgr.DBMgr()
 
 urls = ("/debug", "Debug",
-        "/testEarnings", "Earnings",
+        "/api/webAPI", websiteAPI.websiteParameters,
         "/api/EnergyReport",plugmeter.ReportPlugmeter,
-        "/api/EnergyHVAC", bacnet.ReportBACNET)
+        "/api/EnergyHVAC", bacnet.ReportBACNET,
+        "/stateVector", "GetState")
 
 class Debug:
     """
@@ -23,15 +24,9 @@ class Debug:
     def GET(self):
         return DBMgr.dump_debug_log()
 
-class Earnings:
-    """
-    Example for dynamic html, sends example earnings.
-    TODO: Change return to compute the actual earnings.
-    """
+class GetState:
     def GET(self):
-        web.header('Access-Control-Allow-Origin', '*')
-        web.header('Access-Control-Allow-Credentials', 'true')
-        return "$15,315"
+        return DBMgr.constructParameterValue()
 
 class MyApplication(web.application):
     """
