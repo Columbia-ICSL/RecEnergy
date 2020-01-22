@@ -3,6 +3,17 @@ import datetime
 import time
 import calendar
 import pprint
+import traceback
+
+def add_log(msg,obj):
+	print("Got log:"+msg)
+	print(obj)
+	traceback.print_exc()
+	pymongo.MongoClient().log_db.log.insert({
+		"msg":msg,
+		"obj":obj,
+		"timestamp":datetime.datetime.utcnow()
+		});
 
 def dump_debug_log():
 	return pprint.pformat(
@@ -140,3 +151,33 @@ class DBMgr(object):
 	def watchdogInit(self):
 		self.watchdogLastSeen_User={}
 		self.watchdogLastSeen_Appliance={}
+
+	def ReportEnergyValue(self, applianceID, value, raw_data=None):
+		"maintenance tree node's energy consumption item, and update a sum value"
+		known_room=None
+		try:
+			if (applianceID not in self.list_of_appliances):
+				print("applianceID " + applianceID + " not in list of appliances.")
+				return
+			app=self.list_of_appliances[applianceID]
+			known_room=app["rooms"]
+			if value<0:
+				add_log("Negative value found on energy report?",{
+					"deviceID":applianceID,
+					"value":value,
+					"raw":raw_data
+					})
+				return
+			self.updateApplianceValue(app["id"], value)
+
+		except:
+			add_log("failed to report energy value on device",{
+				"known_room":known_room,
+				"deviceID":applianceID,
+				"value":value,
+				"raw":raw_data
+				})
+			return
+
+	def updateApplianceValue(self, applianceID, value):
+		self.list_of_appliances[applianceID]["value"]=int(float(value))

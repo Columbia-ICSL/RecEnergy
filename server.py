@@ -8,10 +8,13 @@ import time
 import calendar
 import DBMgr
 import api.bacnet as bacnet
+import api.plugmeter as plugmeter
+
 db = DBMgr.DBMgr()
 
 urls = ("/debug", "Debug",
         "/testEarnings", "Earnings",
+        "/api/EnergyReport",plugmeter.ReportPlugmeter,
         "/api/EnergyHVAC", bacnet.ReportBACNET)
 
 class Debug:
