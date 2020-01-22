@@ -1,6 +1,6 @@
 import json
 import web
-import RecEnergy.server
+import server
 
 
 urls = (

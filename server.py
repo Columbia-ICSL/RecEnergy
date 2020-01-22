@@ -6,8 +6,8 @@ import os
 import datetime
 import time
 import calendar
-import RecEnergy.DBMgr
-import RecEnergy.api.bacnet as bacnet
+import DBMgr
+import api.bacnet as bacnet
 db = DBMgr.DBMgr()
 
 urls = ("/debug", "Debug",

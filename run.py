@@ -2,7 +2,7 @@
 """
 This script runs the recommender system server.
 """
-import RecEnergy.server
+import server
 
 if __name__ == "__main__":
     server.run()
